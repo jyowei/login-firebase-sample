@@ -28,15 +28,16 @@ public class LoginServlet extends HttpServlet {
 
 		if (success) {
 			// 成功画面へ
-			request.getRequestDispatcher("success.jsp")
-			.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/success");
 		} else {
 			// 失敗時：メッセージ付きで戻す
-			request.setAttribute("error", "メールアドレスまたはパスワードが違います");
-			request.getRequestDispatcher("login.jsp")
-			.forward(request, response);
 
+			request.setAttribute("errorMessage", "メールアドレスまたはパスワードが違います");
+			request.getRequestDispatcher("/result.jsp")
+			.forward(request, response);
 		}
+
+
 	}
 
 	/**
