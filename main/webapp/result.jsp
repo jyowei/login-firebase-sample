@@ -1,8 +1,21 @@
-<%@ page charset="UTF-8" %>
-<html>
-<head><title>結果</title></head>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ログイン失敗</title>
+</head>
 <body>
-<h2>${result}</h2>
-<a href="login.jsp">戻る</a>
+
+<h2>ログインに失敗しました</h2>
+
+<p style="color:red;">
+    ${errorMessage}
+</p>
+
+<form action="<%= request.getContextPath() %>/login.jsp" method="get">
+    <button type="submit">ログイン画面に戻る</button>
+</form>
+
 </body>
 </html>
