@@ -1,4 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setDateHeader("Expires", 0);
+%>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,7 +20,7 @@
 
 .password-wrapper input {
 	width: 100%;
-	padding-right: 36px; /* 👁 分の余白 */
+	padding-right: 36px;
 	box-sizing: border-box;
 }
 
@@ -26,13 +33,14 @@
 }
 
 .input-box {
-	width: 260px; /* 横幅を統一 */
+	width: 260px;
 	box-sizing: border-box;
 	margin-bottom: 16px;
 }
 </style>
 
 <script>
+	// パスワード表示切り替え
 	function togglePassword() {
 		const pw = document.getElementById("password");
 		const icon = document.getElementById("toggleIcon");
@@ -45,31 +53,44 @@
 			icon.textContent = "👁‍🗨";
 		}
 	}
+
+	// ページを開いたときにリセット
+	window.onload = function() {
+		document.getElementById("registerForm").reset();
+	};
 </script>
 
 </head>
+
 <body>
 
 	<h2>新規ユーザー登録</h2>
 
-	<form action="<%=request.getContextPath()%>/SignupServlet"
-		method="post">
+	<form id="registerForm"
+		action="<%=request.getContextPath()%>/SignupServlet" method="post"
+		autocomplete="off">
+
 		<label>メールアドレス</label>
 		<div class="input-box">
-			<input type="email" name="email" value="admin11@test.com"
+			<input type="email" name="email"
 				style="width: 100%; box-sizing: border-box;">
 		</div>
-
 
 		<label>パスワード</label>
 		<div class="input-box">
 			<div class="password-wrapper">
 				<input type="password" id="password" name="password"> <span
-					class="password-toggle" onclick="togglePassword()">👁‍🗨</span>
+					id="toggleIcon" class="password-toggle" onclick="togglePassword()">👁‍🗨</span>
 			</div>
 		</div>
 
 		<br>
 		<button type="submit">登録</button>
+		<p>
+			<a href="login.jsp">ログイン画面へ</a>
+		</p>
+
+	</form>
+
 </body>
 </html>
