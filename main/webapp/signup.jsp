@@ -79,12 +79,12 @@ response.setDateHeader("Expires", 0);
 		<label>パスワード</label>
 		<div class="input-box">
 			<div class="password-wrapper">
-				<input type="password" id="password" name="password"> <span
-					id="toggleIcon" class="password-toggle" onclick="togglePassword()">👁‍🗨</span>
+				<input type="password" id="password" name="password" required>
+				<span class="password-toggle" id="toggleIcon"
+					onclick="togglePassword()">👁‍🗨</span>
 			</div>
 		</div>
 
-		<br>
 		<button type="submit">登録</button>
 		<p>
 			<a href="login.jsp">ログイン画面へ</a>
